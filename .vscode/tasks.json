@@ -35,7 +35,17 @@
                 "--project",
                 "${workspaceFolder}/ChamadoSystemBackend.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "dependsOn": "cleanBuild"
+        },
+        {
+            "label": "cleanBuild",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/ChamadoSystemBackend.csproj"
+            ]
         }
     ]
 }
