@@ -9,3 +9,5 @@ obj/
 *.dll
 *.exe
 *.pdb
+obj/staticwebassets.pack.sentinel
+obj/Debug/net6.0/ChamadoSystemBackend.csproj.FileListAbsolute.txt
