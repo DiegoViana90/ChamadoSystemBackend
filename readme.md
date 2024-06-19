@@ -29,7 +29,9 @@ No arquivo appsettings.json, ajuste a string de conexão para o seu banco de dad
 {
   "ConnectionStrings": {
     "DefaultConnection": "Host=localhost;Database=ChamadoSystemDB;Username=seu_usuario;Password=sua_senha"
+    
   },
+  
   "JwtSettings": {
     "Secret": "sua_chave_secreta_jwt"
   }
