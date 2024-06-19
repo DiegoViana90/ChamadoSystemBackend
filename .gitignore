@@ -1,11 +1,11 @@
-# Ignore build outputs
+# Visual Studio Code
+.vscode/
+
+# Build
 bin/
 obj/
-obj/Debug/net6.0/ref/ChamadoSystemBackend.dll
-obj/Debug/net6.0/ChamadoSystemBackend.pdb
-obj/Debug/net6.0/ChamadoSystemBackend.dll
-obj/Debug/net6.0/ChamadoSystemBackend.csproj.CoreCompileInputs.cache
-obj/staticwebassets.pack.sentinel
-bin/Debug/net6.0/ref/ChamadoSystemBackend.dll
-bin/Debug/net6.0/ChamadoSystemBackend.pdb
-bin/Debug/net6.0/ChamadoSystemBackend.dll
+
+# Arquivos de build do .NET
+*.dll
+*.exe
+*.pdb
