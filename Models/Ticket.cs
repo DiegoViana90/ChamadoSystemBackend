@@ -16,7 +16,7 @@ namespace ChamadoSystemBackend.Models
         public string Description { get; set; }
 
         [Required]
-        public string Status { get; set; }
+        public bool IsClosed { get; set; } = false; // Public set para permitir definição externa
 
         [Required]
         public int UserId { get; set; }

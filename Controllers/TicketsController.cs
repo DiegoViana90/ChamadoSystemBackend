@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ChamadoSystemBackend.Models;
 using ChamadoSystemBackend.Services;
 using Swashbuckle.AspNetCore.Annotations;
+using ChamadoSystemBackend.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,10 +21,6 @@ namespace ChamadoSystemBackend.Controllers
             _ticketService = ticketService;
         }
 
-        /// <summary>
-        /// Retorna todos os tickets.
-        /// </summary>
-        /// <returns>Lista de tickets.</returns>
         [HttpGet]
         [SwaggerOperation("Listar Tickets")]
         [SwaggerResponse(200, "Lista de tickets encontrada", typeof(List<Ticket>))]
@@ -33,11 +30,6 @@ namespace ChamadoSystemBackend.Controllers
             return Ok(tickets);
         }
 
-        /// <summary>
-        /// Retorna um ticket específico pelo ID.
-        /// </summary>
-        /// <param name="id">ID do ticket.</param>
-        /// <returns>Informações do ticket.</returns>
         [HttpGet("{id}")]
         [SwaggerOperation("Buscar Ticket por ID")]
         [SwaggerResponse(200, "Ticket encontrado", typeof(Ticket))]
@@ -53,46 +45,43 @@ namespace ChamadoSystemBackend.Controllers
             return Ok(ticket);
         }
 
-        /// <summary>
-        /// Cria um novo ticket.
-        /// </summary>
-        /// <param name="ticket">Dados do novo ticket a ser criado.</param>
-        /// <returns>Novo ticket criado.</returns>
-        [HttpPost]
-        [SwaggerOperation("Criar Ticket")]
-        [SwaggerResponse(201, "Ticket criado com sucesso", typeof(Ticket))]
-        public async Task<IActionResult> CreateTicket([FromBody] Ticket ticket)
-        {
-            var createdTicket = await _ticketService.CreateTicketAsync(ticket);
-            return CreatedAtAction(nameof(GetTicket), new { id = createdTicket.Id }, createdTicket);
-        }
+[HttpPost]
+[SwaggerOperation("Criar Ticket")]
+[SwaggerResponse(201, "Ticket criado com sucesso", typeof(Ticket))]
+public async Task<IActionResult> CreateTicket([FromBody] TicketCreateDto ticketDto)
+{
+    var ticket = new Ticket
+    {
+        Title = ticketDto.Title,
+        Description = ticketDto.Description,
+        UserId = ticketDto.UserId,
+        IsClosed = false
+    };
 
-        /// <summary>
-        /// Atualiza um ticket existente.
-        /// </summary>
-        /// <param name="id">ID do ticket a ser atualizado.</param>
-        /// <param name="ticket">Dados atualizados do ticket.</param>
-        /// <returns>Código de resposta indicando sucesso.</returns>
+    var createdTicket = await _ticketService.CreateTicketAsync(ticket);
+    return CreatedAtAction(nameof(GetTicket), new { id = createdTicket.Id }, createdTicket);
+}
+
         [HttpPut("{id}")]
         [SwaggerOperation("Atualizar Ticket")]
         [SwaggerResponse(204, "Ticket atualizado com sucesso")]
         [SwaggerResponse(400, "Requisição inválida")]
-        public async Task<IActionResult> UpdateTicket(int id, [FromBody] Ticket ticket)
+        public async Task<IActionResult> UpdateTicket(int id, [FromBody] TicketUpdateDto ticketDto)
         {
-            if (id != ticket.Id)
+            var ticket = await _ticketService.GetTicketByIdAsync(id);
+            if (ticket == null)
             {
-                return BadRequest();
+                return NotFound();
             }
+
+            ticket.Title = ticketDto.Title;
+            ticket.Description = ticketDto.Description;
+            ticket.UserId = ticketDto.UserId;
 
             await _ticketService.UpdateTicketAsync(ticket);
             return NoContent();
         }
 
-        /// <summary>
-        /// Deleta um ticket existente.
-        /// </summary>
-        /// <param name="id">ID do ticket a ser deletado.</param>
-        /// <returns>Código de resposta indicando sucesso.</returns>
         [HttpDelete("{id}")]
         [SwaggerOperation("Deletar Ticket")]
         [SwaggerResponse(204, "Ticket deletado com sucesso")]
