@@ -53,7 +53,7 @@ Para criar o esquema do banco de dados, execute as migrações:
 ```dotnet ef database update```
 
 5. Execute a aplicação:
-6. 
+
 ```dotnet run```
 
 Documentação da API
