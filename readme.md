@@ -19,7 +19,7 @@ Este é o backend para um sistema de gerenciamento de chamados, desenvolvido em 
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/ChamadoSystemBackend.git
+   git clone https://github.com/DiegoViana90/ChamadoSystemBackend.git
 
 
 2. Configure a string de conexão com o banco de dados:
