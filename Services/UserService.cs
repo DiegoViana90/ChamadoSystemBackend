@@ -1,8 +1,11 @@
+// ChamadoSystemBackend\Services\UserService.cs
 using System.Collections.Generic;
 using System.Linq;
+using ChamadoSystemBackend.Data;
 using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Models;
-using ChamadoSystemBackend.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Services
 {
@@ -15,51 +18,44 @@ namespace ChamadoSystemBackend.Services
             _context = context;
         }
 
-        public IEnumerable<UserDto> GetUsers()
+        public async Task<IEnumerable<UserDto>> GetUsersAsync()
         {
-            return _context.Users.Select(u => new UserDto
-            {
-                Id = u.Id,
-                Name = u.Name,
-                Email = u.Email,
-                Role = u.Role
-            }).ToList();
+            return await _context.Users
+                .Select(u => new UserDto { Id = u.Id, Email = u.Email, Role = u.Role, Name = u.Name })
+                .ToListAsync();
         }
 
-        public UserDto GetUserById(int id)
+        public async Task<UserDto> GetUserByIdAsync(int id)
         {
-            var user = _context.Users.Find(id);
-            if (user == null) return null;
-
-            return new UserDto
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
             {
-                Id = user.Id,
-                Name = user.Name,
-                Email = user.Email,
-                Role = user.Role
-            };
+                return null;
+            }
+            return new UserDto { Id = user.Id, Email = user.Email, Role = user.Role, Name = user.Name };
         }
 
-        public UserDto CreateUser(CreateUserDto createUserDto)
+        public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto)
         {
             var newUser = new User
             {
-                Name = createUserDto.Name,
                 Email = createUserDto.Email,
-                Password = createUserDto.Password,
-                Role = createUserDto.Role
+                Role = createUserDto.Role,
+                Name = createUserDto.Name,
+                Password = createUserDto.Password
             };
-
             _context.Users.Add(newUser);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return new UserDto
-            {
-                Id = newUser.Id,
-                Name = newUser.Name,
-                Email = newUser.Email,
-                Role = newUser.Role
-            };
+            return new UserDto { Id = newUser.Id, Email = newUser.Email, Role = newUser.Role, Name = newUser.Name };
+        }
+
+        public async Task<IEnumerable<UserDto>> GetUsersByNameAsync(string name)
+        {
+            return await _context.Users
+                .Where(u => EF.Functions.Like(u.Name, $"%{name}%"))
+                .Select(u => new UserDto { Id = u.Id, Email = u.Email, Role = u.Role, Name = u.Name })
+                .ToListAsync();
         }
     }
 }

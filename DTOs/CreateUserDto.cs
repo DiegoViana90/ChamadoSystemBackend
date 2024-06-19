@@ -1,3 +1,4 @@
+// ChamadoSystemBackend\DTOs\CreateUserDto.cs
 using System.ComponentModel.DataAnnotations;
 using ChamadoSystemBackend.ValidationAttributes;
 
@@ -5,9 +6,6 @@ namespace ChamadoSystemBackend.DTOs
 {
     public class CreateUserDto
     {
-        [Required]
-        public string Name { get; set; }
-
         [Required]
         [EmailAddress]
         [ValidDomain("primeplus.com.br", ErrorMessage = "O email deve ser do domínio @primeplus.com.br")]
@@ -19,5 +17,8 @@ namespace ChamadoSystemBackend.DTOs
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string Name { get; set; }
     }
 }
