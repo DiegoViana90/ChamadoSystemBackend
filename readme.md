@@ -25,18 +25,15 @@ Este é o backend para um sistema de gerenciamento de chamados, desenvolvido em 
 2. Configure a string de conexão com o banco de dados:
 
 No arquivo appsettings.json, ajuste a string de conexão para o seu banco de dados PostgreSQL:
+   ```bash
 
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=ChamadoSystemDB;Username=seu_usuario;Password=sua_senha"
-    
-  },
-  
+    "DefaultConnection": "Host=localhost;Database=ChamadoSystemDB;Username=seu_usuario;Password=sua_senha"    
+  },  
   "JwtSettings": {
-    "Secret": "sua_chave_secreta_jwt"
-  
-  }
-  
+    "Secret": "sua_chave_secreta_jwt"  
+  }  
 }
 
 3.  Instale as dependências:
