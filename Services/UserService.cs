@@ -1,39 +1,65 @@
-// ChamadoSystemBackend\Services\UserService.cs
 using System.Collections.Generic;
 using System.Linq;
 using ChamadoSystemBackend.DTOs;
+using ChamadoSystemBackend.Models;
+using ChamadoSystemBackend.Data;
 
 namespace ChamadoSystemBackend.Services
 {
     public class UserService : IUserService
     {
-        private static List<UserDto> _users = new List<UserDto>
+        private readonly ApplicationDbContext _context;
+
+        public UserService(ApplicationDbContext context)
         {
-            new UserDto { Id = 1, Email = "user1@example.com", Role = "user" },
-            new UserDto { Id = 2, Email = "user2@example.com", Role = "user" },
-            new UserDto { Id = 3, Email = "support1@example.com", Role = "support" }
-        };
+            _context = context;
+        }
 
         public IEnumerable<UserDto> GetUsers()
         {
-            return _users;
+            return _context.Users.Select(u => new UserDto
+            {
+                Id = u.Id,
+                Name = u.Name,
+                Email = u.Email,
+                Role = u.Role
+            }).ToList();
         }
 
         public UserDto GetUserById(int id)
         {
-            return _users.FirstOrDefault(u => u.Id == id);
+            var user = _context.Users.Find(id);
+            if (user == null) return null;
+
+            return new UserDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Role = user.Role
+            };
         }
 
         public UserDto CreateUser(CreateUserDto createUserDto)
         {
-            var newUser = new UserDto
+            var newUser = new User
             {
-                Id = _users.Count + 1,
+                Name = createUserDto.Name,
                 Email = createUserDto.Email,
+                Password = createUserDto.Password,
                 Role = createUserDto.Role
             };
-            _users.Add(newUser);
-            return newUser;
+
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+
+            return new UserDto
+            {
+                Id = newUser.Id,
+                Name = newUser.Name,
+                Email = newUser.Email,
+                Role = newUser.Role
+            };
         }
     }
 }

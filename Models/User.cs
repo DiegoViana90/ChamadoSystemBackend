@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ChamadoSystemBackend.ValidationAttributes;
 
 namespace ChamadoSystemBackend.Models
 {
@@ -8,13 +9,18 @@ namespace ChamadoSystemBackend.Models
         public int Id { get; set; }
 
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        public string Name { get; set; }
 
+        [Required]
+        [EmailAddress]
+        [ValidDomain("primeplus.com.br", ErrorMessage = "O email deve ser do domínio @primeplus.com.br")]
+        public string Email { get; set; }
+        
         [Required]
         public string Password { get; set; }
 
         [Required]
+        [AllowedRoles(ErrorMessage = "A role deve ser 'user' ou 'support'")]
         public string Role { get; set; }
     }
 }

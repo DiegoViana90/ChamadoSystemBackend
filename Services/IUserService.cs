@@ -1,4 +1,3 @@
-// ChamadoSystemBackend\Services\IUserService.cs
 using System.Collections.Generic;
 using ChamadoSystemBackend.DTOs;
 
