@@ -34,7 +34,9 @@ No arquivo appsettings.json, ajuste a string de conexão para o seu banco de dad
   
   "JwtSettings": {
     "Secret": "sua_chave_secreta_jwt"
+  
   }
+  
 }
 
 3.  Instale as dependências:
