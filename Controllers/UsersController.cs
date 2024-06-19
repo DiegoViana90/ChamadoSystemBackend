@@ -3,6 +3,7 @@ using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Services;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Controllers
 {
@@ -17,31 +18,22 @@ namespace ChamadoSystemBackend.Controllers
             _userService = userService;
         }
 
-        /// <summary>
-        /// Retorna todos os usuários.
-        /// </summary>
-        /// <returns>Lista de usuários.</returns>
         [HttpGet]
         [SwaggerOperation("Listar Usuários")]
         [SwaggerResponse(200, "Lista de usuários encontrada", typeof(List<UserDto>))]
-        public ActionResult<IEnumerable<UserDto>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
-            var users = _userService.GetUsers();
+            var users = await _userService.GetUsersAsync();
             return Ok(users);
         }
 
-        /// <summary>
-        /// Retorna um usuário específico pelo ID.
-        /// </summary>
-        /// <param name="id">ID do usuário.</param>
-        /// <returns>Informações do usuário.</returns>
         [HttpGet("{id}")]
         [SwaggerOperation("Buscar Usuário por ID")]
         [SwaggerResponse(200, "Usuário encontrado", typeof(UserDto))]
         [SwaggerResponse(404, "Usuário não encontrado")]
-        public ActionResult<UserDto> GetUser(int id)
+        public async Task<ActionResult<UserDto>> GetUser(int id)
         {
-            var user = _userService.GetUserById(id);
+            var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -49,18 +41,27 @@ namespace ChamadoSystemBackend.Controllers
             return Ok(user);
         }
 
-        /// <summary>
-        /// Cria um novo usuário.
-        /// </summary>
-        /// <param name="createUserDto">Dados do novo usuário a ser criado.</param>
-        /// <returns>Novo usuário criado.</returns>
         [HttpPost]
         [SwaggerOperation("Criar Usuário")]
         [SwaggerResponse(201, "Usuário criado com sucesso", typeof(UserDto))]
-        public ActionResult<UserDto> CreateUser([FromBody] CreateUserDto createUserDto)
+        public async Task<ActionResult<UserDto>> CreateUser([FromBody] CreateUserDto createUserDto)
         {
-            var createdUser = _userService.CreateUser(createUserDto);
+            var createdUser = await _userService.CreateUserAsync(createUserDto);
             return CreatedAtAction(nameof(GetUser), new { id = createdUser.Id }, createdUser);
+        }
+
+        [HttpGet("search")]
+        [SwaggerOperation("Buscar Usuários por Nome")]
+        [SwaggerResponse(200, "Usuários encontrados", typeof(List<UserDto>))]
+        [SwaggerResponse(404, "Nenhum usuário encontrado")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetUsersByName([FromQuery] string name)
+        {
+            var users = await _userService.GetUsersByNameAsync(name);
+            if (users == null || !users.Any())
+            {
+                return NotFound();
+            }
+            return Ok(users);
         }
     }
 }

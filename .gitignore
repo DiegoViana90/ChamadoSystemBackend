@@ -1,3 +1,20 @@
-# Ignore build outputs
+# Visual Studio Code
+.vscode/
+
+# Build
 bin/
 obj/
+
+# Arquivos de build do .NET
+*.dll
+*.exe
+*.pdb
+*.cache
+*.txt
+*.pack.sentinel
+obj/staticwebassets.pack.sentinel
+obj/Debug/net6.0/ChamadoSystemBackend.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/ChamadoSystemBackend.assets.cache
+obj/Debug/net6.0/ChamadoSystemBackend.csproj.FileListAbsolute.txt
+obj/Debug/net6.0/ChamadoSystemBackend.assets.cache
+obj/staticwebassets.pack.sentinel
