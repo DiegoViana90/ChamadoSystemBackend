@@ -63,5 +63,21 @@ namespace ChamadoSystemBackend.Controllers
             }
             return Ok(users);
         }
+
+        [HttpDelete("{id}")]
+        [SwaggerOperation("Deletar Usuário por ID")]
+        [SwaggerResponse(204, "Usuário deletado com sucesso")]
+        [SwaggerResponse(404, "Usuário não encontrado")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var userDto = await _userService.GetUserByIdAsync(id);
+            if (userDto == null)
+            {
+                return NotFound();
+            }
+
+            await _userService.DeleteUserAsync(id);
+                       return Ok("Usuário deletado com sucesso!");
+        }
     }
 }
