@@ -63,6 +63,28 @@ namespace ChamadoSystemBackend.Controllers
             return Ok(message);
         }
 
+        
+        [HttpPut("{id}")]
+        [SwaggerOperation("Atualizar Ticket")]
+        [SwaggerResponse(204, "Ticket atualizado com sucesso")]
+        [SwaggerResponse(400, "Requisição inválida")]
+        public async Task<IActionResult> UpdateTicketAsync([FromBody] TicketUpdateDto ticketDto)
+        {   
+
+            var ticket = await _ticketService.GetTicketByIdAsync(ticketDto.TicketId);
+            
+            ticket.Title = ticket.Title;
+            ticket.Description = ticketDto.Description;
+            ticket.IsClosed = ticketDto.IsClosed;
+            ticket.UserId = ticketDto.UserId;
+
+            await _ticketService.UpdateTicketAsync(ticket);
+            
+            var message = $"Ticket {ticket.Id} atualizado com sucesso";
+
+            return Ok(message);
+        }
+        
         // [HttpGet("{id}")]
         // [SwaggerOperation("Buscar Ticket por ID")]
         // [SwaggerResponse(200, "Ticket encontrado", typeof(TicketDto))]
@@ -112,34 +134,6 @@ namespace ChamadoSystemBackend.Controllers
         //         return NotFound();
         //     }
 
-        //     return NoContent();
-        // }
-
-        // [HttpPut("{id}")]
-        // [SwaggerOperation("Atualizar Ticket")]
-        // [SwaggerResponse(204, "Ticket atualizado com sucesso")]
-        // [SwaggerResponse(400, "Requisição inválida")]
-        // public async Task<IActionResult> UpdateTicketAsync(int id, [FromBody] TicketUpdateDto ticketDto)
-        // {
-        //     var ticket = await _ticketService.GetTicketByIdAsync(id);
-        //     if (ticket == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-        //     var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-
-        //     if (userRole == "user" && ticket.UserId != userId)
-        //     {
-        //         return Forbid();
-        //     }
-
-        //     ticket.Title = ticketDto.Title;
-        //     ticket.Description = ticketDto.Description;
-        //     ticket.UserId = ticketDto.UserId;
-
-        //     await _ticketService.UpdateTicketAsync(ticket);
         //     return NoContent();
         // }
     }
