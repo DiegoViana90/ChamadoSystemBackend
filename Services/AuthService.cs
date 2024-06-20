@@ -12,7 +12,7 @@ namespace ChamadoSystemBackend.Services
 {
     public interface IAuthService
     {
-        string Authenticate(string email, string password);
+        AuthResponse Authenticate(string email, string password);
     }
 
     public class AuthService : IAuthService
@@ -26,10 +26,17 @@ namespace ChamadoSystemBackend.Services
             _configuration = configuration;
         }
 
-        public string Authenticate(string email, string password)
+        public AuthResponse Authenticate(string email, string password)
         {
+            Console.WriteLine($"Tentando autenticar usuário com email: {email}");
+
             var user = _context.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
-            if (user == null) return null;
+
+            if (user == null)
+            {
+                Console.WriteLine($"Usuário não encontrado para o email: {email}");
+                return null;
+            }
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:Secret"]);
@@ -46,7 +53,19 @@ namespace ChamadoSystemBackend.Services
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+            var tokenString = tokenHandler.WriteToken(token);
+
+            return new AuthResponse
+            {
+                Token = tokenString,
+                User = user
+            };
         }
+    }
+
+    public class AuthResponse
+    {
+        public string Token { get; set; }
+        public User User { get; set; }
     }
 }

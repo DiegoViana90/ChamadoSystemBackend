@@ -1,20 +1,13 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using ChamadoSystemBackend.Data;
+using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Services
 {
-    public interface ITicketService
-    {
-        Task<List<Ticket>> GetTicketsAsync();
-        Task<Ticket> GetTicketByIdAsync(int id);
-        Task<Ticket> CreateTicketAsync(Ticket ticket);
-        Task<Ticket> UpdateTicketAsync(Ticket ticket);
-        Task<bool> DeleteTicketAsync(int id);
-    }
-
     public class TicketService : ITicketService
     {
         private readonly ApplicationDbContext _context;
@@ -24,14 +17,14 @@ namespace ChamadoSystemBackend.Services
             _context = context;
         }
 
-        public async Task<List<Ticket>> GetTicketsAsync()
+        public async Task<IEnumerable<Ticket>> GetTicketsAsync()
         {
-            return await _context.Tickets.Include(t => t.User).ToListAsync();
+            return await _context.Tickets.ToListAsync();
         }
 
         public async Task<Ticket> GetTicketByIdAsync(int id)
         {
-            return await _context.Tickets.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == id);
+            return await _context.Tickets.FindAsync(id);
         }
 
         public async Task<Ticket> CreateTicketAsync(Ticket ticket)
@@ -41,11 +34,10 @@ namespace ChamadoSystemBackend.Services
             return ticket;
         }
 
-        public async Task<Ticket> UpdateTicketAsync(Ticket ticket)
+        public async Task UpdateTicketAsync(Ticket ticket)
         {
-            _context.Tickets.Update(ticket);
+            _context.Entry(ticket).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return ticket;
         }
 
         public async Task<bool> DeleteTicketAsync(int id)
@@ -59,6 +51,13 @@ namespace ChamadoSystemBackend.Services
             _context.Tickets.Remove(ticket);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<IEnumerable<Ticket>> GetTicketsByUserIdAsync(int userId)
+        {
+            return await _context.Tickets
+                .Where(t => t.UserId == userId)
+                .ToListAsync();
         }
     }
 }

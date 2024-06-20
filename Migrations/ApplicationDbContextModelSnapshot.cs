@@ -51,7 +51,7 @@ namespace ChamadoSystemBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("Tickets", (string)null);
                 });
 
             modelBuilder.Entity("ChamadoSystemBackend.Models.User", b =>
@@ -80,7 +80,7 @@ namespace ChamadoSystemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ChamadoSystemBackend.Models.Ticket", b =>

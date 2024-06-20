@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Services;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Controllers
 {
