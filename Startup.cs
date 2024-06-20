@@ -1,12 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IO;
 using System.Reflection;
 using System.Text;
 using Microsoft.OpenApi.Models;
@@ -52,7 +45,6 @@ namespace ChamadoSystemBackend
 
             services.AddControllers();
 
-            // Configuração do Swagger
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -71,7 +63,6 @@ namespace ChamadoSystemBackend
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-                // Verifica se o arquivo XML existe antes de incluir nos comentários do Swagger
                 if (File.Exists(xmlPath))
                 {
                     c.IncludeXmlComments(xmlPath);

@@ -3,6 +3,7 @@ using System;
 using ChamadoSystemBackend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChamadoSystemBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240620113412_GetUsersByName")]
+    partial class GetUsersByName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +53,7 @@ namespace ChamadoSystemBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("ChamadoSystemBackend.Models.User", b =>
@@ -80,7 +82,7 @@ namespace ChamadoSystemBackend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ChamadoSystemBackend.Models.Ticket", b =>

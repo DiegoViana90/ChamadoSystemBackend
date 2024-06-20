@@ -1,10 +1,9 @@
-// ChamadoSystemBackend\Services\UserService.cs
-using System.Collections.Generic;
-using System.Linq;
 using ChamadoSystemBackend.Data;
 using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Services
@@ -56,6 +55,16 @@ namespace ChamadoSystemBackend.Services
                 .Where(u => EF.Functions.Like(u.Name, $"%{name}%"))
                 .Select(u => new UserDto { Id = u.Id, Email = u.Email, Role = u.Role, Name = u.Name })
                 .ToListAsync();
+        }
+
+        public async Task DeleteUserAsync(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

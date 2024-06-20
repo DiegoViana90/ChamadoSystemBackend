@@ -1,3 +1,10 @@
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.csproj.AssemblyReference.cache
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.AssemblyInfoInputs.cache
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.AssemblyInfo.cs
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.csproj.CoreCompileInputs.cache
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\appsettings.json
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\ChamadoSystemBackend.exe
@@ -25,13 +32,6 @@ C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\Cha
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.csproj.AssemblyReference.cache
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.AssemblyInfoInputs.cache
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.AssemblyInfo.cs
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.csproj.CoreCompileInputs.cache
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\scopedcss\bundle\ChamadoSystemBackend.styles.css
@@ -40,3 +40,5 @@ C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\Cha
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ref\ChamadoSystemBackend.dll
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.pdb
 C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\obj\Debug\net6.0\ChamadoSystemBackend.genruntimeconfig.cache
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\suporteti\Documents\desenvolvimento\ChamadoSystem\ChamadoSystemCore\ChamadoSystemBackend\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

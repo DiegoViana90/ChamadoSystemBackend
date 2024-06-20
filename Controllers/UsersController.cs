@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Services;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Controllers
 {
@@ -62,6 +60,22 @@ namespace ChamadoSystemBackend.Controllers
                 return NotFound();
             }
             return Ok(users);
+        }
+
+        [HttpDelete("{id}")]
+        [SwaggerOperation("Deletar Usuário por ID")]
+        [SwaggerResponse(204, "Usuário deletado com sucesso")]
+        [SwaggerResponse(404, "Usuário não encontrado")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var userDto = await _userService.GetUserByIdAsync(id);
+            if (userDto == null)
+            {
+                return NotFound();
+            }
+
+            await _userService.DeleteUserAsync(id);
+                       return Ok("Usuário deletado com sucesso!");
         }
     }
 }

@@ -1,7 +1,6 @@
-// ChamadoSystemBackend\Services\IUserService.cs
+using ChamadoSystemBackend.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ChamadoSystemBackend.DTOs;
 
 namespace ChamadoSystemBackend.Services
 {
@@ -11,5 +10,6 @@ namespace ChamadoSystemBackend.Services
         Task<UserDto> GetUserByIdAsync(int id);
         Task<UserDto> CreateUserAsync(CreateUserDto createUserDto);
         Task<IEnumerable<UserDto>> GetUsersByNameAsync(string name);
+        Task DeleteUserAsync(int id);
     }
 }
