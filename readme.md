@@ -57,6 +57,7 @@ Para criar o esquema do banco de dados, execute as migrações:
 ```dotnet run```
 
 Documentação da API
+
 A API é documentada usando Swagger. Após iniciar o servidor, acesse a documentação em:
 
 ```https://localhost:5001/swagger```
