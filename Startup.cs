@@ -45,6 +45,14 @@ namespace ChamadoSystemBackend
 
             services.AddControllers();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontendOrigin", builder =>
+                    builder.WithOrigins("http://localhost:3000")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -108,6 +116,8 @@ namespace ChamadoSystemBackend
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors("AllowFrontendOrigin");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
