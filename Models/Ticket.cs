@@ -16,10 +16,6 @@ namespace ChamadoSystemBackend.Models
         public string Description { get; set; }
 
         [Required]
-
-
-
-
         public bool IsClosed { get; set; } = false;
 
         [Required]

@@ -80,7 +80,7 @@ namespace ChamadoSystemBackend.Controllers
 
             await _ticketService.UpdateTicketAsync(ticket);
             
-            var message = $"Ticket {ticket.Id} atualizado com sucesso";
+            var message = $"Ticket {ticket.Id} atualizado com sucesso.";
 
             return Ok(message);
         }

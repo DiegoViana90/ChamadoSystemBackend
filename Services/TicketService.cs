@@ -19,7 +19,9 @@ namespace ChamadoSystemBackend.Services
 
         public async Task<IEnumerable<Ticket>> GetTicketsAsync()
         {
-            return await _context.Tickets.ToListAsync();
+            return await _context.Tickets
+                .Include(ticket => ticket.User)
+                .ToListAsync();
         }
 
         public async Task<Ticket> GetTicketByIdAsync(int id)
