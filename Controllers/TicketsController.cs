@@ -64,7 +64,7 @@ namespace ChamadoSystemBackend.Controllers
         }
 
         
-        [HttpPut("{id}")]
+        [HttpPut]
         [SwaggerOperation("Atualizar Ticket")]
         [SwaggerResponse(204, "Ticket atualizado com sucesso")]
         [SwaggerResponse(400, "Requisição inválida")]
