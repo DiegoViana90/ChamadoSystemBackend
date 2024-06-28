@@ -12,7 +12,7 @@ namespace ChamadoSystemBackend.Models
         [EmailAddress]
         [ValidDomain("primeplus.com.br", ErrorMessage = "O email deve ser do domínio @primeplus.com.br")]
         public string Email { get; set; }
-        
+
         [Required]
         public string Password { get; set; }
 
@@ -22,5 +22,7 @@ namespace ChamadoSystemBackend.Models
 
         [Required]
         public string Name { get; set; }
+
+    public bool IsFirstAccess { get; set; } = true;
     }
 }

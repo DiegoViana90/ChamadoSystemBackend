@@ -41,7 +41,8 @@ namespace ChamadoSystemBackend.Services
                 Email = createUserDto.Email,
                 Role = createUserDto.Role,
                 Name = createUserDto.Name,
-                Password = createUserDto.Password
+                Password = createUserDto.Password,
+                IsFirstAccess = true // Novo usuário tem primeiro acesso como true
             };
             _context.Users.Add(newUser);
             await _context.SaveChangesAsync();
@@ -65,6 +66,21 @@ namespace ChamadoSystemBackend.Services
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task UpdateUserPasswordAsync(UpdatePasswordDto updatePasswordDto)
+        {
+            var user = await _context.Users.FindAsync(updatePasswordDto.UserId);
+            if (user == null)
+            {
+                throw new KeyNotFoundException("Usuário não encontrado");
+            }
+
+            user.Password = updatePasswordDto.NewPassword;
+            user.IsFirstAccess = false;
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
         }
     }
 }

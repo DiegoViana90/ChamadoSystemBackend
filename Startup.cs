@@ -112,12 +112,13 @@ namespace ChamadoSystemBackend
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseCors("AllowFrontendOrigin");
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseCors("AllowFrontendOrigin");
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

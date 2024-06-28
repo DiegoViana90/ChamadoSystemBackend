@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace ChamadoSystemBackend.DTOs
 {
     public class UserDto
@@ -11,5 +9,8 @@ namespace ChamadoSystemBackend.DTOs
         public string Email { get; set; }
 
         public string Role { get; set; }
+
+        // Nova propriedade para primeiro acesso
+        public bool IsFirstAccess { get; set; }
     }
 }

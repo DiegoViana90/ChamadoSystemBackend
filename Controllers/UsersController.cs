@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using ChamadoSystemBackend.DTOs;
 using ChamadoSystemBackend.Services;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChamadoSystemBackend.Controllers
 {
@@ -75,7 +77,24 @@ namespace ChamadoSystemBackend.Controllers
             }
 
             await _userService.DeleteUserAsync(id);
-                       return Ok("Usuário deletado com sucesso!");
+            return Ok("Usuário deletado com sucesso!");
+        }
+
+        [HttpPut("update-password")]
+        [SwaggerOperation("Atualizar Senha do Usuário")]
+        [SwaggerResponse(200, "Senha atualizada com sucesso")]
+        [SwaggerResponse(400, "Requisição inválida")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto)
+        {
+            try
+            {
+                await _userService.UpdateUserPasswordAsync(updatePasswordDto);
+                return Ok("Senha atualizada com sucesso");
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

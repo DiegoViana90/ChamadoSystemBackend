@@ -11,5 +11,6 @@ namespace ChamadoSystemBackend.Services
         Task<UserDto> CreateUserAsync(CreateUserDto createUserDto);
         Task<IEnumerable<UserDto>> GetUsersByNameAsync(string name);
         Task DeleteUserAsync(int id);
+        Task UpdateUserPasswordAsync(UpdatePasswordDto updatePasswordDto); 
     }
 }

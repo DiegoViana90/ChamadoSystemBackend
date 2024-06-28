@@ -21,31 +21,33 @@ namespace ChamadoSystemBackend.Controllers
         /// </summary>
         /// <param name="request">Dados de autenticação do usuário.</param>
         /// <returns>Token JWT e detalhes do usuário se a autenticação for bem-sucedida.</returns>
-        [HttpPost("login")]
-        [SwaggerOperation("Autenticação de Usuário")]
-        [SwaggerResponse(200, "Token JWT gerado com sucesso", typeof(AuthResponseDto))]
-        [SwaggerResponse(401, "Usuário não autorizado")]
-        public IActionResult Login([FromBody] AuthRequestDto request)
+[HttpPost("login")]
+[SwaggerOperation("Autenticação de Usuário")]
+[SwaggerResponse(200, "Token JWT gerado com sucesso", typeof(AuthResponseDto))]
+[SwaggerResponse(401, "Usuário não autorizado")]
+public IActionResult Login([FromBody] AuthRequestDto request)
+{
+    var authResponse = _authService.Authenticate(request.Email, request.Password);
+    if (authResponse == null)
+    {
+        return Unauthorized();
+    }
+
+    var authResponseDto = new AuthResponseDto
+    {
+        Token = authResponse.Token,
+        User = new UserDto
         {
-            var authResponse = _authService.Authenticate(request.Email, request.Password);
-            if (authResponse == null)
-            {
-                return Unauthorized();
-            }
-
-            var authResponseDto = new AuthResponseDto
-            {
-                Token = authResponse.Token,
-                User = new UserDto
-                {
-                    Id = authResponse.User.Id,
-                    Name = authResponse.User.Name,
-                    Email = authResponse.User.Email,
-                    Role = authResponse.User.Role
-                }
-            };
-
-            return Ok(authResponseDto);
+            Id = authResponse.User.Id,
+            Name = authResponse.User.Name,
+            Email = authResponse.User.Email,
+            Role = authResponse.User.Role,
+            IsFirstAccess = authResponse.User.IsFirstAccess 
         }
+    };
+
+    return Ok(authResponseDto);
+}
+
     }
 }
