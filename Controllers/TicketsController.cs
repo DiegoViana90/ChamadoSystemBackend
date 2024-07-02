@@ -54,7 +54,7 @@ namespace ChamadoSystemBackend.Controllers
                 Title = ticketDto.Title,
                 Description = ticketDto.Description,
                 UserId = ticketDto.UserId,
-                IsClosed = false
+                Status = 0
             };
 
             var createdTicket = await _ticketService.CreateTicketAsync(ticket);
@@ -75,7 +75,7 @@ namespace ChamadoSystemBackend.Controllers
             
             ticket.Title = ticket.Title;
             ticket.Description = ticketDto.Description;
-            ticket.IsClosed = ticketDto.IsClosed;
+            ticket.Status = ticketDto.Status;
             ticket.UserId = ticketDto.UserId;
 
             await _ticketService.UpdateTicketAsync(ticket);

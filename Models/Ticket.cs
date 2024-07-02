@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ChamadoSystemBackend.Enum;
 
 namespace ChamadoSystemBackend.Models
 {
@@ -16,7 +17,7 @@ namespace ChamadoSystemBackend.Models
         public string Description { get; set; }
 
         [Required]
-        public bool IsClosed { get; set; } = false;
+        public Status Status { get; set; } = 0;
 
         [Required]
         public int UserId { get; set; }

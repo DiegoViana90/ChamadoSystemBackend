@@ -10,7 +10,6 @@ namespace ChamadoSystemBackend.DTOs
 
         public string Role { get; set; }
 
-        // Nova propriedade para primeiro acesso
         public bool IsFirstAccess { get; set; }
     }
 }
