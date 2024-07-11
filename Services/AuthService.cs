@@ -10,11 +10,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ChamadoSystemBackend.Services
 {
-    public interface IAuthService
-    {
-        AuthResponse Authenticate(string email, string password);
-    }
-
     public class AuthService : IAuthService
     {
         private readonly ApplicationDbContext _context;
