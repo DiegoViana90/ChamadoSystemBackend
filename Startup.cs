@@ -62,9 +62,8 @@ namespace ChamadoSystemBackend
                     Description = "API para gerenciamento de chamados",
                     Contact = new OpenApiContact
                     {
-                        Name = "Seu Nome",
-                        Email = "seu.email@example.com",
-                        Url = new Uri("https://www.example.com")
+                        Name = "Diego Viana",
+                        Email = "dtviana90@gmail.com"
                     }
                 });
 
